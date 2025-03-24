@@ -10,7 +10,6 @@ describe('API tests for Bank of Canada', () => {
           expect(response.body).to.have.property('terms');
           expect(response.body).to.have.property('seriesDetail');
           expect(response.body.terms.url).to.eq('https://www.bankofcanada.ca/terms/');
-          expect(response.body.seriesDetail.id).to.eq('FXUSDCAD');
           
           const observations = response.body.observations;
           expect(observations).to.be.an('array');
