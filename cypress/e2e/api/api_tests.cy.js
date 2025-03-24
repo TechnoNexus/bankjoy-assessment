@@ -7,6 +7,12 @@ describe('API tests for Bank of Canada', () => {
         .then((response) => {
           expect(response.status).to.eq(200);
           expect(response.body).to.have.property('observations');
+          expect(response.body).to.have.property('terms');
+          expect(response.body).to.have.property('seriesDetail');
+          expect(response.body.terms.url).to.eq('https://www.bankofcanada.ca/terms/');
+
+
+
           
           const observations = response.body.observations;
           expect(observations.length).to.be.greaterThan(0);
