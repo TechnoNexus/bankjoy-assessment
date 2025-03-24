@@ -10,16 +10,19 @@ describe('API tests for Bank of Canada', () => {
           expect(response.body).to.have.property('terms');
           expect(response.body).to.have.property('seriesDetail');
           expect(response.body.terms.url).to.eq('https://www.bankofcanada.ca/terms/');
-
-
-
+          expect(response.body.seriesDetail.id).to.eq('FXUSDCAD');
           
           const observations = response.body.observations;
+          expect(observations).to.be.an('array');
           expect(observations.length).to.be.greaterThan(0);
   
         let rates = [];
         observations.forEach(param => {
+          expect(param).to.have.property('FXUSDCAD');
+          expect(param.FXUSDCAD).to.have.property('v');
           let rate = parseFloat(param.FXUSDCAD.v);
+          expect(rate).to.be.a('number');
+          expect(rate).to.be.greaterThan(0);
           rates.push(rate);
         });
 
