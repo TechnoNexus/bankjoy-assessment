@@ -10,7 +10,7 @@ Simple tests for Bank of Canada Valet API forex rates.
 ## Running Tests
 
 ```bash
-npm test
+npx cypress run
 ```
 
 ## What This Does
