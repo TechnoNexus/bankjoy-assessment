@@ -1,25 +1,17 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Custom command to make an API request
+Cypress.Commands.add('makeApiRequest', (url, queryParams) => {
+    cy.request({
+      method: 'GET',
+      url: `${url}?${new URLSearchParams(queryParams).toString()}`,
+    });
+  });
+  
+  // Custom command to validate API response status
+  Cypress.Commands.add('validateApiResponse', (response, expectedStatus) => {
+    expect(response.status).to.eq(expectedStatus);
+    expect(response.body).to.have.property('observations');
+    expect(response.body).to.have.property('terms');
+    expect(response.body).to.have.property('seriesDetail');
+    expect(response.body.terms.url).to.eq('https://www.bankofcanada.ca/terms/');
+  });
+  
