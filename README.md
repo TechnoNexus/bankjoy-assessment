@@ -5,7 +5,9 @@ Simple tests for Bank of Canada Valet API forex rates.
 ## Setup
 
 1. Install Node.js
-2. Run: `npm install`
+2. Run: `npm install cypress --save-dev`
+3. Run `npm install mochawesome --save-dev`
+
 
 ## Running Tests
 
