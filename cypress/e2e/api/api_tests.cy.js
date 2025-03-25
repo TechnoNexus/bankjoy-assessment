@@ -53,3 +53,23 @@ describe('API tests for Bank of Canada', () => {
     });
   });
 });
+
+it('Should return an error for a future date range', () => {
+  cy.request({
+    method: 'GET',
+    url: `${apiUrl}/FXUSDCAD/json?start_date=2030-01-01&end_date=2030-01-10`,
+    failOnStatusCode: false
+  }).then((response) => {
+    expect(response.status).to.not.eq(200);
+  });
+});
+
+it('Should return an error when no parameters are passed', () => {
+  cy.request({
+    method: 'GET',
+    url: `${apiUrl}/FXUSDCAD/json`,
+    failOnStatusCode: false
+  }).then((response) => {
+    expect(response.status).to.not.eq(200);
+  });
+});
